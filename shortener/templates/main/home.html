@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>URL Shortener</title>
+{% endblock %}
+
+{% block body %}
+{% include 'navbar.html' %}
+
+<script>
+    function showDiv() {
+        document.getElementById('ShowShortcode').style.display = "block";
+    }
+</script>
+
+<div class="row" style="margin-top: 40px;">
+    <div class="col s6 offset-s3">
+      <div class="card blue lighten-3" style="border-width: 30px;border:solid;border-color: rgb(233, 243, 243);">
+        <div class="card-content gray-text" style="text-align: center;">
+          <h3>Welcome to URL Shortener</h3><br>
+          {% if request.user.is_authenticated %}
+          <div class="card-title black-text">ENTER URL</div>
+            <form action="" method="POST" >
+                {% csrf_token %} 
+                    <div>{{form.url}}</div>
+                    {{form.url.errors}}
+                    <input type="submit" value="submit">
+            </form>
+            <br><br>
+            <div style="font-size:25px;"><button  onclick="showDiv()">View Result</button></div>
+            <div id="ShowShortcode"  style="display:none; margin: 30px; text-align: center;color: black;" >
+                {{msg}}<br>
+                <b>Actual URL</b>: {{url}} <br>
+                <b>Shortened URL</b>: {{shortcode}}
+            </div>
+            {% else %}
+            <div style="color:black;font-size: 20px;">Didn't Registered Yet? <br><a href="{% url 'signup' %}">Signup</a> <br>or<br> <a href="{% url 'login' %}">Login</a>
+            </div>{% endif %}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

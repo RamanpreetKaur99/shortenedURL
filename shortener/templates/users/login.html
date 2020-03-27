@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% include 'navbar.html' %}
+
+<div class="row" style="margin-top: 50px;">
+    <div class="col s6 offset-s3">
+      <div class="card blue lighten-3">
+        <div class="card-content black-text">
+          <span class="card-title" style="text-align: center;"><b>Login</b></span>
+          <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+              {{field.label}}
+              {{field}}
+            {% endfor %}
+            <div style="text-align: center;"><button type="submit">Login</button></div>
+          </form>
+            Not a member yet: <a href="{% url 'signup' %}"> Signup</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

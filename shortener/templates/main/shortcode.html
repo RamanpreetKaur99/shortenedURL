@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+{% block body %}
+
+{% include 'navbar.html' %}
+
+<div class="row" style="margin-top: 50px;">
+    <div class="col s6 offset-s3">
+      <div class="card blue lighten-3">
+        <div class="card-content black-text">
+          <span class="card-title">URLs shortened</span>
+          <table style="width:100%">
+            <tr>
+              <th>Actual URL</th>
+              <th>Shortened URL</th>
+            </tr>
+            {% for i in urls %}
+                <tr>
+                    <td>{{i.url}}</td>
+                    <td>{{ i.shortcode }}</td>
+                </tr>
+            {% endfor %}
+          </table> 
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

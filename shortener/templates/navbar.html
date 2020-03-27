@@ -1,0 +1,19 @@
+
+  <div class="navbar-fixed">
+    <nav class=" grey darken-2" style="max-height: 50px;font-family:sans-serif ;">
+      <div class="nav-wrapper">
+          <a href="{% url 'home' %}">  Home</a>
+        {% if request.user.is_authenticated %}
+        <ul class="right hide-on-med-and-down">
+          <li><a href="{% url 'showURLs' %}">View URLs</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+        {% else %}
+        <ul class="right hide-on-med-and-down">
+            <li><a href="{% url 'login' %}">Login</a></li>
+        </ul>
+        {% endif %}
+      </div>
+    </nav>
+  </div>
+
